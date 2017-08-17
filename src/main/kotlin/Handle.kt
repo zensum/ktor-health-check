@@ -5,17 +5,19 @@ import org.jetbrains.ktor.http.HttpStatusCode
 const private val EST_JSON_PER_KEY = 5 + 10 + 4
 
 private fun checksResultsToJSON(res: Map<String, Boolean>) =
-    StringBuffer(res.size * EST_JSON_PER_KEY)
+    StringBuilder(res.size * EST_JSON_PER_KEY)
         .apply {
             append('{')
-            res.forEach { (k , v) ->
-                append('"')
+            // We use a prefix to add a comma before all but the first element
+            var prefix = "\""
+            res.forEach { (k, v) ->
+                append(prefix)
+                prefix = ",\""
                 append(k)
                 append("\":")
                 append(v)
-                append(',')
             }
-            append('}')
+            append("}")
         }.toString()
 
 internal suspend fun healthCheck(fn: suspend () -> Map<String, Boolean>) = fn().let {
