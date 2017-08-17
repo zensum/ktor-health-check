@@ -1,0 +1,14 @@
+[*]
+charset=utf-8
+end_of_line=lf
+insert_final_newline=false
+indent_style=space
+indent_size=4
+
+[*.kt]
+trim_trailing_whitespace=true
+
+[{*.yml,*.yaml}]
+indent_style=space
+indent_size=2
+
