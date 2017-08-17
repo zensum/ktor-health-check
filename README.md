@@ -8,7 +8,6 @@ fun main(args: Array<String>) {
     embeddedServer(Netty, 80) {
         // Install the middleware...
         install(Health)
-        /* ... */
     }.start(wait = true)
 }
 ```
@@ -65,7 +64,7 @@ operational.
 For some use-cases you may want to expose checks on URLs other than
 `/healthz` and `/readyz`. In that case we need to use `customCheck`
 
-``` kotlin
+```kotlin
 customCheck("/smoketest", "database") { database.test() }
 ```
 And the smoketest should now be avaliable on `/smoketest`
