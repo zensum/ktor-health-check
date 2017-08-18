@@ -1,4 +1,6 @@
 # ktor-health-check
+[![license](https://img.shields.io/github/license/zensum/ktor-sentry-feature.svg)]() [![](https://jitpack.io/v/zensum/ktor-sentry-feature.svg)](https://jitpack.io/#zensum/ktor-sentry-feature)
+
 Simple, opinionated ktor health and readiness checks made for Kubernetes.
 
 ```kotlin
