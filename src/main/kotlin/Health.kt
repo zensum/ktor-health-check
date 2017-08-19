@@ -36,7 +36,7 @@ class Health private constructor(val cfg: Configuration) {
         val minL = lengths.min()!!
         pipeline.intercept(ApplicationCallPipeline.Call) {
             val path = call.request.path().trim('/')
-            if(path.length > maxL || path.length < minL) {
+            if (path.length > maxL || path.length < minL) {
                 return@intercept
             }
             val check = checks[path] ?: return@intercept
