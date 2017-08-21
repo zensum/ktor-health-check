@@ -2,7 +2,7 @@ package ktor_health_check
 import org.jetbrains.ktor.http.HttpStatusCode
 
 // bool value = ~5. name = 10, four quotes and a comma
-const private val EST_JSON_PER_KEY = 5 + 10 + 4
+private const val EST_JSON_PER_KEY = 5 + 10 + 4
 
 private fun checksResultsToJSON(res: Map<String, Boolean>) =
     StringBuilder(res.size * EST_JSON_PER_KEY)
