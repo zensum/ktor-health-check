@@ -5,7 +5,7 @@ apply plugin: 'idea'
 
 group = 'se.zensum'
 version = '1.0-SNAPSHOT'
-description = 'Ktor middleware for health and readiness checks in the Kubernetes style'
+description = 'Ktor feature for health and readiness checks in the Kubernetes style'
 
 defaultTasks 'build'
 
