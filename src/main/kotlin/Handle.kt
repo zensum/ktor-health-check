@@ -1,5 +1,6 @@
 package ktor_health_check
-import org.jetbrains.ktor.http.HttpStatusCode
+
+import io.ktor.http.HttpStatusCode
 
 // bool value = ~5. name = 10, four quotes and a comma
 private const val EST_JSON_PER_KEY = 5 + 10 + 4

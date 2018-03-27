@@ -1,11 +1,10 @@
 package ktor_health_check
 
-import org.jetbrains.ktor.application.ApplicationCallPipeline
-import org.jetbrains.ktor.application.ApplicationFeature
-import org.jetbrains.ktor.http.ContentType
-import org.jetbrains.ktor.request.path
-import org.jetbrains.ktor.response.respondText
-import org.jetbrains.ktor.util.AttributeKey
+import io.ktor.application.*
+import io.ktor.http.ContentType
+import io.ktor.request.path
+import io.ktor.response.respondText
+import io.ktor.util.*
 
 // Health and readiness are established by looking
 // at a number of checks. A check can be something like
