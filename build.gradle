@@ -10,7 +10,7 @@ description = 'Ktor feature for health and readiness checks in the Kubernetes st
 defaultTasks 'build'
 
 buildscript {
-    ext.kotlin_version = '1.2.21'
+    ext.kotlin_version = '1.2.31'
     ext.jvm_version = '1.8'
     ext.junit_platform_version = '1.0.0-M4'
     repositories {
