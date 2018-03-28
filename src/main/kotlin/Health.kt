@@ -1,10 +1,12 @@
 package ktor_health_check
 
-import io.ktor.application.*
+import io.ktor.application.ApplicationCallPipeline
+import io.ktor.application.ApplicationFeature
+import io.ktor.application.call
 import io.ktor.http.ContentType
 import io.ktor.request.path
 import io.ktor.response.respondText
-import io.ktor.util.*
+import io.ktor.util.AttributeKey
 
 // Health and readiness are established by looking
 // at a number of checks. A check can be something like
