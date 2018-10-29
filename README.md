@@ -70,3 +70,4 @@ For some use-cases you may want to expose checks on URLs other than
 customCheck("/smoketest", "database") { database.test() }
 ```
 And the smoketest should now be avaliable on `/smoketest`
+ 
