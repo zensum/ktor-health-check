@@ -1,6 +1,6 @@
 apply plugin: 'kotlin'
 apply plugin: 'java'
-apply plugin: 'maven'
+apply plugin: 'maven-publish'
 apply plugin: 'idea'
 
 group = 'se.zensum'
@@ -10,7 +10,7 @@ description = 'Ktor feature for health and readiness checks in the Kubernetes st
 defaultTasks 'build'
 
 buildscript {
-    ext.kotlin_version = '1.3.41'
+    ext.kotlin_version = '1.6.20'
     ext.jvm_version = '1.8'
     repositories {
         mavenCentral()
@@ -22,11 +22,11 @@ buildscript {
 }
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    testCompile 'org.junit.jupiter:junit-jupiter-api:5.5.1'
-    testRuntime 'org.junit.jupiter:junit-jupiter-engine:5.5.1'
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    compile group: 'io.ktor', name: 'ktor-server-core', version: '1.2.2'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation group: 'io.ktor', name: 'ktor-server-core', version: '2.0.0'
 }
 
 test {
@@ -34,8 +34,7 @@ test {
 }
 
 repositories {
-    jcenter()
-    maven { url "https://dl.bintray.com/kotlin/ktor" }
+    mavenCentral()
 }
 compileKotlin {
     sourceCompatibility = jvm_version
@@ -63,5 +62,17 @@ sourceSets {
 
 wrapper {
     description = 'Generates gradlew[.bat] scripts for faster execution'
-    gradleVersion = '5.0'
+    gradleVersion = '7.4.2'
 }
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+        mavenLocal()
+    }
+}
+
