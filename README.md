@@ -3,6 +3,8 @@
 
 Simple, opinionated ktor health and readiness checks made for Kubernetes.
 
+**Installation**: https://jitpack.io/#zensum/ktor-health-check
+
 ```kotlin
 import ktor_health_check.Health
 
