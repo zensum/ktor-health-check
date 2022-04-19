@@ -1,12 +1,10 @@
 package ktor_health_check
 
-import io.ktor.application.ApplicationCallPipeline
-import io.ktor.application.ApplicationFeature
-import io.ktor.application.call
-import io.ktor.http.ContentType
-import io.ktor.request.path
-import io.ktor.response.respondText
-import io.ktor.util.AttributeKey
+import io.ktor.http.*
+import io.ktor.server.application.*
+import io.ktor.server.request.*
+import io.ktor.server.response.*
+import io.ktor.util.*
 
 // Health and readiness are established by looking
 // at a number of checks. A check can be something like
@@ -33,8 +31,8 @@ class Health private constructor(val cfg: Configuration) {
         val checks = cfg.getChecksWithFunctions()
         if (checks.isEmpty()) return
         val lengths = checks.keys.map { it.length }
-        val maxL = lengths.max()!!
-        val minL = lengths.min()!!
+        val maxL = lengths.maxOrNull()!!
+        val minL = lengths.minOrNull()!!
         pipeline.intercept(ApplicationCallPipeline.Call) {
             val path = call.request.path().trim('/')
             if (path.length > maxL || path.length < minL) {
@@ -46,6 +44,7 @@ class Health private constructor(val cfg: Configuration) {
             finish()
         }
     }
+
     class Configuration internal constructor() {
         private var checks: Map<String, CheckMapBuilder> = emptyMap()
         private var noHealth = false
@@ -83,7 +82,7 @@ class Health private constructor(val cfg: Configuration) {
 
         private fun getCheck(url: String) = checks.getOrElse(url) {
             CheckMapBuilder().also {
-                checks += url to it
+                checks = checks + (url to it)
             }
         }
 
@@ -118,7 +117,7 @@ class Health private constructor(val cfg: Configuration) {
         }
     }
 
-    companion object Feature : ApplicationFeature<
+    companion object Feature : BaseApplicationPlugin<
         ApplicationCallPipeline, Configuration, Health
         > {
         override val key = AttributeKey<Health>("Health")

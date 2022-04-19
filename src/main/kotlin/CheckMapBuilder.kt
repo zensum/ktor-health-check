@@ -12,9 +12,9 @@ private fun CheckMap.toFunction(): suspend () -> Map<String, Boolean> = {
 internal class CheckMapBuilder {
     private var inner: CheckMap = emptyMap()
     fun add(name: String, fn: Check) {
-        inner += name to fn
+        inner = inner + (name to fn)
     }
     fun notEmpty() = inner.isNotEmpty()
-    internal inline fun toFunction() =
+    internal fun toFunction() =
         inner.toFunction()
 }
